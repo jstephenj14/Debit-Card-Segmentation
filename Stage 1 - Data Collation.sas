@@ -1,3 +1,4 @@
+/*Create primary debit card transaction base */
 proc sql;
    create table ptlf_base as 
    select 
@@ -14,20 +15,7 @@ proc sql;
 	where "01FEB2015"d<=tran_date<="29FEB2016"d;
 quit;
 
-proc sql;
-create table ptlf_base as
-select t1.*,t2.issue_date,case when tran_date-issue_date>90 then 1 else 0 end as greater_than_90, tran_date-issue_date as tenure
-from ptlf_base t1 left join
-(
-	select distinct card_no,issue_date
-	from dcdm.dc_feb16_4
-	where card_no ne ' '
-)
-t2
-on t1.card_num=t2.card_no
-having issue_date ne .;
-quit;
-
+/* Map type of segment and product data */
 proc sql;
 create table ptlf_base  as
 select t1.*,input(substr(t2.segment_c,1,1),1.) as segment_c,input(substr(t2.product_c,1,1),1.) as product_c,t2.age_109
@@ -35,6 +23,7 @@ from ptlf_base t1 left join maindata.i_grid_109_c t2
 on t1.custid=t2.cust_id;
 quit;
 
+/* Rollup data on customer/month level */
 proc sql;
 create table ptlf_txn_rollup as
 select 
@@ -50,6 +39,7 @@ from ptlf_base
 group by 1,2,3,4;
 quit;
 
+/* Rollup data on customer level */
 proc sql;
 create table cust_rollup as
 select 
@@ -90,6 +80,8 @@ from cust_rollup t1 left join adhoc5.delay_roll_up t2
 on t1.custid=t2.custid;
 quit;
 
+/* adhoc5.start_date_data contains join date of the customer.
+  Used to calculated customer vintage or tenure */
 proc sql;
 create table vintage_base as
 select cust_id,min(start_date) as start_date format=date9.
@@ -97,6 +89,7 @@ from adhoc5.start_date_data
 group by 1;
 quit;
 
+/* Map Vintage */
 proc sql;
 create table vintage_mapping as
 select t1.*,t2.start_date,intck('month',start_date,'28FEB2016'd) as vintage 
@@ -104,7 +97,7 @@ from adhoc5.DC_RFM_DATA t1 left join vintage_base t2
 on t1.custid=t2.cust_id;
 quit;
 
-/*Final data*/
+/*Final data contains only Domestic(Product=1) or Salaried(Product=2) customers*/
 data adhoc5.dc_rfm_trimmed;
 set vintage_mapping(where=(product_c=1 or product_c=2 ) keep=custid product_c months_active_new mean_no_of_txns mean_txn_amt mean_gap recency vintage);
 run;
