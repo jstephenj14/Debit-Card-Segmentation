@@ -92,8 +92,9 @@ qqplot mean_gap log_mean_gap log_mean_txn_amt log_recency log_vintage/ normal;
 hist mean_gap  log_mean_gap log_mean_txn_amt log_recency log_vintage;
 run;
 
-/*Filtering out outliers and standardization*/
-proc standard data= dc_rfm_capped_logged_overall(where=((&filter1_99_mean_txn_amt.) AND (&filter1_99_mean_gap.) and log_mean_gap>=-0.925)) mean=0 std=1 out=dc_rfm_capped_stdized_overall ;
+/*Filtering out outliers and standardization. dc_rfm_capped_stdized_overall contains standardized, normalized data*/
+proc standard data= dc_rfm_capped_logged_overall(where=((&filter1_99_mean_txn_amt.) AND (&filter1_99_mean_gap.) and log_mean_gap>=-0.925)) mean=0 std=1 
+out=dc_rfm_capped_stdized_overall ;
 var 
 mean_no_of_txns 
 mean_txn_amt 
