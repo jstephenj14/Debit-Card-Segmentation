@@ -1,6 +1,6 @@
 #Debit Card Segmentation
 
-_My name is John Stephen and I've created these pages to document my project work both at my workplace and otherwise. I am open to updating or improving any of the codes or processes I discuss here so feel free to reach out to me. Happy reading!_
+_My name is John Stephen and I've created these pages to document my project work both at my workplace and otherwise. I am open to updating or improving any of the codes or processes I discuss here so feel free to reach out to me. Please visit [my profile page](https://github.com/jstephenj14) for other projects. Happy reading!_
 
 _Disclaimer: Client sensitive numbers and names have been altered to retain confidentiality._
 
