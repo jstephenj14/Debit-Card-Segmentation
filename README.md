@@ -4,8 +4,6 @@ _My name is John Stephen and I've created these pages to document my project wor
 
 _Disclaimer: Client sensitive numbers and names have been altered to retain confidentiality._
 
-This repository consists of the SAS code that I developed and deployed to perform customer segmentation for one of my clients. The segmentation is done on debit card transaction data.
-
 The repository consists of five main files that detail the entire process, stage by stage. A brief description of the stages as well as accompanying graphs are shown below (the links lead to code deployed for each process):
 
 [**Stage 1 - Data Collation**](https://github.com/jstephenj14/Debit-Card-Segmentation/blob/master/Stage%201%20-%20Data%20Collation.sas)- This primary stage of the process collects data from a variety of sources and consolidates them all to derive a customer level data source containing five attributes. Their derivation are described in this chart: 
