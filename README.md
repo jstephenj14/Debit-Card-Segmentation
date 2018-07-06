@@ -6,7 +6,7 @@ The repository consists of five main files that detail the entire process, stage
 
 [**Stage 1 - Data Collation**](https://github.com/jstephenj14/Debit-Card-Segmentation/blob/master/Stage%201%20-%20Data%20Collation.sas)- This primary stage of the process collects data from a variety of sources and consolidates them all to derive a customer level data source containing five attributes. Their derivation are described in this chart: 
 
-![](https://s14.postimg.org/yoa7k5k69/Data_Collation.png)
+<a href="https://drive.google.com/uc?export=view&id=1QX3Hw6eJ6W758j-GX8J6hkaxicvYqsl-"><img src="https://drive.google.com/uc?export=view&id=1QX3Hw6eJ6W758j-GX8J6hkaxicvYqsl-" style="width: 500px; max-width: 100%; height: auto" title="WOE Table" /></a>
 
 [**Stage 2 - Data Cleaning**](https://github.com/jstephenj14/Debit-Card-Segmentation/blob/master/Stage%202%20-%20Data%20Cleaning.sas)- At this stage, the collated data is plotted to identify and treat outliers. Data is also transformed (using log functions) and standardized as well. Standardized values are used to profile clusters (discussed in Stage 5) while transformed values help arrive at stable clustering solutions. For example, the variables mean_txn_amt and mean_gap are treated and transformed like below:
 
